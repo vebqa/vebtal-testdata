@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.vebqa</groupId>
+		<artifactId>vebtal-parent</artifactId>
+		<version>0.9.9</version>
+	</parent>
+	
+	<artifactId>vebtal-testdata</artifactId>
+	<version>0.9.0</version>
+	<name>vebtal-testdata</name>
+	<description>create different kinds of testdata items</description>
+	
+	<inceptionYear>2018</inceptionYear>
+
+	<url>https://github.com/vebqa/vebtal-testdata</url>
+
+	<packaging>jar</packaging>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/vebqa/vebtal-testdata</url>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/vebqa/vebtal-testdata/issues</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<name>Karsten Doerges</name>
+			<email>kdoerges@googlemail.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<modulename>vebtaltestdata</modulename>
+	</properties>
+
+	<dependencies>
+		<!-- interne Projektreferenzen -->
+		<dependency>
+			<groupId>com.github.vebqa</groupId>
+			<artifactId>vebtal-api</artifactId>
+			<version>0.9.12</version>
+		</dependency>
+	</dependencies>
+		
+</project>
