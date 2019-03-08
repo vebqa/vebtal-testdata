@@ -12,11 +12,11 @@ import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 
-public class TDResource extends AbstractTestAdaptionResource implements TestAdaptionResource {
+public class TdResource extends AbstractTestAdaptionResource implements TestAdaptionResource {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TDResource.class);
+	private static final Logger logger = LoggerFactory.getLogger(TdResource.class);
 	
-	public TDResource() {
+	public TdResource() {
 	
 	}
 	

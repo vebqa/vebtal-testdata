@@ -97,7 +97,7 @@ public class TDTestAdaptionPlugin extends AbstractTestAdaptionPlugin {
                 addTarget.clear();
                 addValue.clear();
                 
-                TDResource aResource = new TDResource();
+                TdResource aResource = new TdResource();
                 GuiManager.getinstance().setTabStatus(TDTestAdaptionPlugin.ID, SutStatus.CONNECTED);
                 aResource.execute(newCmd);
                 GuiManager.getinstance().setTabStatus(TDTestAdaptionPlugin.ID, SutStatus.DISCONNECTED);
