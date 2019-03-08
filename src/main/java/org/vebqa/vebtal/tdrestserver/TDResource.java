@@ -29,7 +29,7 @@ public class TDResource extends AbstractTestAdaptionResource implements TestAdap
 
 		Response result = null;
 		try {
-			Class<?> cmdClass = Class.forName("org.vebqa.vebtal.pdf.commands." + getCommandClassName(cmd));
+			Class<?> cmdClass = Class.forName("org.vebqa.vebtal.td.commands." + getCommandClassName(cmd));
 			Constructor<?> cons = cmdClass.getConstructor(String.class, String.class, String.class);
 			Object cmdObj = cons.newInstance(cmd.getCommand(), cmd.getTarget(), cmd.getValue());
 
@@ -69,7 +69,7 @@ public class TDResource extends AbstractTestAdaptionResource implements TestAdap
 		if (result.getCode() != Response.PASSED) {
 			TDTestAdaptionPlugin.setLatestResult(false, result.getMessage());
 		} else {
-			TDTestAdaptionPlugin.setLatestResult(true, "ok");
+			TDTestAdaptionPlugin.setLatestResult(true, "ok: " + result.getMessage());
 		}
 
 		// enable user actions

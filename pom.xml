@@ -7,12 +7,12 @@
 		<artifactId>vebtal-parent</artifactId>
 		<version>0.9.9</version>
 	</parent>
-	
+
 	<artifactId>vebtal-testdata</artifactId>
 	<version>0.9.0</version>
 	<name>vebtal-testdata</name>
 	<description>create different kinds of testdata items</description>
-	
+
 	<inceptionYear>2018</inceptionYear>
 
 	<url>https://github.com/vebqa/vebtal-testdata</url>
@@ -55,6 +55,11 @@
 			<artifactId>vebtal-api</artifactId>
 			<version>0.9.12</version>
 		</dependency>
+		<dependency>
+			<groupId>org.iban4j</groupId>
+			<artifactId>iban4j</artifactId>
+			<version>3.2.1</version>
+		</dependency>
 	</dependencies>
-		
+
 </project>
