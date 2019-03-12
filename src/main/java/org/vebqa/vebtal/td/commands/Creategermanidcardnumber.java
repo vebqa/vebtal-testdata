@@ -15,6 +15,8 @@ public class Creategermanidcardnumber extends AbstractCommand {
 
 	private final Logger logger = LoggerFactory.getLogger(Creategermanidcardnumber.class);
 	
+	private final String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
 	public Creategermanidcardnumber(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
 		this.type = CommandType.ACCESSOR;
@@ -41,6 +43,7 @@ public class Creategermanidcardnumber extends AbstractCommand {
 				break;
 			case "lfd":
 				lfd = subParts[1];
+				lfd = lfd.toUpperCase();
 				break;
 			case "nation":
 				nation = subParts[1];
@@ -99,22 +102,19 @@ public class Creategermanidcardnumber extends AbstractCommand {
 
 			switch (i) {
 			case 1:
-				charOrd = (int) anInput.substring(pos, pos + 1).charAt(0);
-				charOrd = charOrd - 48;
+				charOrd = chars.indexOf(anInput.substring(pos, pos + 1).charAt(0));
 				charOrd = charOrd * 7;
 				cs = cs + charOrd;
 				i++;
 				break;
 			case 2:
-				charOrd = (int) anInput.substring(pos, pos + 1).charAt(0);
-				charOrd = charOrd - 48;
+				charOrd = chars.indexOf(anInput.substring(pos, pos + 1).charAt(0));
 				charOrd = charOrd * 3;
 				cs = cs + charOrd;
 				i++;
 				break;
 			case 3:
-				charOrd = (int) anInput.substring(pos, pos + 1).charAt(0);
-				charOrd = charOrd - 48;
+				charOrd = chars.indexOf(anInput.substring(pos, pos + 1).charAt(0));
 				charOrd = charOrd * 1;
 				cs = cs + charOrd;
 				i = 1;
