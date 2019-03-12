@@ -83,7 +83,7 @@ public class Creategermanidcardnumber extends AbstractCommand {
 
 		tResp.setCode(Response.PASSED);
 		tResp.setMessage(term1 + "-" + term2 + "-" + term3 + "-" + term4 + "-" + term5);
-		tResp.setStoredValue(term1 + term2 + term5);
+		tResp.setStoredValue(term1);
 		tResp.setStoredKey(this.value);
 
 		return tResp;
