@@ -44,7 +44,13 @@ public class Createiban extends AbstractCommand {
 			}
 		}
 
-		Iban iban = new Iban.Builder().countryCode(country).buildRandom();
+		Iban iban;
+		
+		if (bank == null) {
+			iban = new Iban.Builder().countryCode(country).buildRandom();
+		} else {
+			iban = new Iban.Builder().countryCode(country).bankCode(bank).buildRandom();
+		}
 
 		tResp.setCode(Response.PASSED);
 		tResp.setMessage(iban.toFormattedString());

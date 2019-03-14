@@ -12,10 +12,10 @@ import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 import org.vebqa.vebtal.tdrestserver.TDTestAdaptionPlugin;
 
-@Keyword(module = TDTestAdaptionPlugin.ID, command = "getBICfromIBAN", description = "validate a given IBAN number and return BIC", hintTarget = "<IBAN>", hintValue = "<buffer>")
-public class Getbicfromiban extends AbstractCommand {
+@Keyword(module = TDTestAdaptionPlugin.ID, command = "getBankfromIBAN", description = "validate a given IBAN number and return BIC", hintTarget = "<IBAN>", hintValue = "<buffer>")
+public class Getbankfromiban extends AbstractCommand {
 
-	public Getbicfromiban(String aCommand, String aTarget, String aValue) {
+	public Getbankfromiban(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
 		this.type = CommandType.ACCESSOR;
 	}
