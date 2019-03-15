@@ -18,6 +18,7 @@ public class Createiban extends AbstractCommand {
 
 	@Override
 	public Response executeImpl(Object driver) {
+		
 		Response tResp = new Response();
 		
 		CountryCode country = CountryCode.DE;
@@ -46,7 +47,7 @@ public class Createiban extends AbstractCommand {
 
 		Iban iban;
 		
-		if (bank == null) {
+		if (bank == null || bank == "") {
 			iban = new Iban.Builder().countryCode(country).buildRandom();
 		} else {
 			iban = new Iban.Builder().countryCode(country).bankCode(bank).buildRandom();
