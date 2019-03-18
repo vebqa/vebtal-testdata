@@ -1,5 +1,6 @@
 package org.vebqa.vebtal.td.commands;
 
+import org.iban4j.CountryCode;
 import org.iban4j.Iban;
 import org.iban4j.IbanFormat;
 import org.iban4j.IbanFormatException;
@@ -10,18 +11,22 @@ import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.td.IBANDriver;
 import org.vebqa.vebtal.tdrestserver.TDTestAdaptionPlugin;
 
-@Keyword(module = TDTestAdaptionPlugin.ID, command = "getBankfromIBAN", description = "validate a given IBAN number and return bank code", hintTarget = "<IBAN>", hintValue = "<buffer>")
-public class Getbankfromiban extends AbstractCommand {
+@Keyword(module = TDTestAdaptionPlugin.ID, command = "getBicfromIBAN", description = "validate a given IBAN number and return BIC", hintTarget = "<IBAN>", hintValue = "<buffer>")
+public class Getbicfromiban extends AbstractCommand {
 
-	public Getbankfromiban(String aCommand, String aTarget, String aValue) {
+	public Getbicfromiban(String aCommand, String aTarget, String aValue) {
 		super(aCommand, aTarget, aValue);
 		this.type = CommandType.ACCESSOR;
 	}
 
 	@Override
 	public Response executeImpl(Object driver) {
+
+		IBANDriver ibanDriver = (IBANDriver) driver;
+
 		Response tResp = new Response();
 
 		Iban iban;
@@ -49,12 +54,25 @@ public class Getbankfromiban extends AbstractCommand {
 			return tResp;
 		}
 
-		tResp.setCode(Response.PASSED);
-		tResp.setMessage("extracted BIC: " + iban.getBankCode());
-		if (this.value != null && !this.value.contentEquals("")) {
-			tResp.setStoredKey(this.value);
-			tResp.setStoredValue(iban.getBankCode());
+		if (iban.getCountryCode() != CountryCode.DE) {
+			tResp.setCode(Response.FAILED);
+			tResp.setMessage("Only german banks can resolved to BIC at this moment.");
+			return tResp;
 		}
+
+		String tBIC = ibanDriver.getBICbyBLZ(iban.getBankCode());
+		if (tBIC != null) {
+			tResp.setCode(Response.PASSED);
+			tResp.setMessage(tBIC);
+			if (this.value != null && !this.value.contentEquals("")) {
+				tResp.setStoredKey(this.value);
+				tResp.setStoredValue(tBIC);
+			}
+		} else {
+			tResp.setCode(Response.FAILED);
+			tResp.setMessage("Cannot resolve BIC");
+		}
+
 		return tResp;
 	}
 

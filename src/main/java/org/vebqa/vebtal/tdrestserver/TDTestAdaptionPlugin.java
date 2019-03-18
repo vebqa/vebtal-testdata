@@ -14,6 +14,7 @@ import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandResult;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.sut.SutStatus;
+import org.vebqa.vebtal.td.IBANStore;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -113,6 +114,12 @@ public class TDTestAdaptionPlugin extends AbstractTestAdaptionPlugin {
         BorderPane pane = (BorderPane)pdfTab.getContent();
 		pane.setTop(hbox);        
 
+		// Load TestData
+		String dataPath = GuiManager.getinstance().getConfig().getString("blzdata", "NOUSE");
+		if (!dataPath.contentEquals("NOUSE")) {
+			IBANStore.getStore().getDriver().setDataPath(GuiManager.getinstance().getConfig().getString("blzdata")).load();
+			GuiManager.getinstance().getLogArea().appendText("Added bank data: " + IBANStore.getStore().getDriver().getRecordCount() + "\n");
+		}
 		
 		return pdfTab;
 	}

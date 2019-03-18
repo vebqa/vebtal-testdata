@@ -3,11 +3,16 @@ package org.vebqa.vebtal.td.model;
 import com.ancientprogramming.fixedformat4j.annotation.Field;
 import com.ancientprogramming.fixedformat4j.annotation.Record;
 
+/**
+ * Standard model for bank records of the Bundesbankliste
+ * @author doerges
+ *
+ */
 @Record
 public class BankEntry {
 
 	private String bankleitzahl;
-	private Integer blzDienstleister;
+	private String blzDienstleister;
 	private String bankName;
 	private String plz;
 	private String ort;
@@ -17,9 +22,8 @@ public class BankEntry {
 	private String crcmethod;
 	private String numberDataEntry;
 	private String changeAttribute;
-	private Integer deprecation;
+	private String deprecation;
 	private String successorBlz;
-	private String IbanRuleAttribute;
 	
 	@Field(offset=1, length=8)
 	public String getBankleitzahl() {
@@ -30,10 +34,10 @@ public class BankEntry {
 	}
 	
 	@Field(offset=9, length=1)
-	public Integer getBlzDienstleister() {
+	public String getBlzDienstleister() {
 		return blzDienstleister;
 	}
-	public void setBlzDienstleister(Integer blzDienstleister) {
+	public void setBlzDienstleister(String blzDienstleister) {
 		this.blzDienstleister = blzDienstleister;
 	}
 	
@@ -110,10 +114,10 @@ public class BankEntry {
 	}
 	
 	@Field(offset=160, length=1)
-	public Integer getDeprecation() {
+	public String getDeprecation() {
 		return deprecation;
 	}
-	public void setDeprecation(Integer deprecation) {
+	public void setDeprecation(String deprecation) {
 		this.deprecation = deprecation;
 	}
 	
@@ -123,13 +127,5 @@ public class BankEntry {
 	}
 	public void setSuccessorBlz(String successorBlz) {
 		this.successorBlz = successorBlz;
-	}
-	
-	@Field(offset=169, length=6)
-	public String getIbanRuleAttribute() {
-		return IbanRuleAttribute;
-	}
-	public void setIbanRuleAttribute(String ibanRuleAttribute) {
-		IbanRuleAttribute = ibanRuleAttribute;
 	}
 }

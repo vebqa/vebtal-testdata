@@ -6,6 +6,7 @@ import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.td.IBANDriver;
 import org.vebqa.vebtal.tdrestserver.TDTestAdaptionPlugin;
 
 @Keyword(module = TDTestAdaptionPlugin.ID, command = "createIBAN", description = "create a valid IBAN number", hintTarget = "country=;bank=;account=;", hintValue = "<storeKey")
@@ -18,9 +19,11 @@ public class Createiban extends AbstractCommand {
 
 	@Override
 	public Response executeImpl(Object driver) {
-		
+
+		IBANDriver ibanDriver = (IBANDriver) driver;
+
 		Response tResp = new Response();
-		
+
 		CountryCode country = CountryCode.DE;
 		String bank = "";
 		String account = "";
@@ -46,17 +49,19 @@ public class Createiban extends AbstractCommand {
 		}
 
 		Iban iban;
-		
+
 		if (bank == null || bank == "") {
-			iban = new Iban.Builder().countryCode(country).buildRandom();
+			iban = new Iban.Builder().countryCode(country).bankCode(ibanDriver.getRandomBLZfromData()).buildRandom();
 		} else {
 			iban = new Iban.Builder().countryCode(country).bankCode(bank).buildRandom();
 		}
 
 		tResp.setCode(Response.PASSED);
 		tResp.setMessage(iban.toFormattedString());
-		tResp.setStoredValue(iban.toFormattedString());
-		tResp.setStoredKey(this.value);
+		if (this.value != null && !this.value.contentEquals("")) {
+			tResp.setStoredValue(iban.toFormattedString());
+			tResp.setStoredKey(this.value);
+		}
 
 		return tResp;
 	}

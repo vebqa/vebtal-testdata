@@ -11,6 +11,7 @@ import org.vebqa.vebtal.TestAdaptionResource;
 import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
+import org.vebqa.vebtal.td.IBANStore;
 
 public class TdResource extends AbstractTestAdaptionResource implements TestAdaptionResource {
 	
@@ -42,7 +43,7 @@ public class TdResource extends AbstractTestAdaptionResource implements TestAdap
 			Method m = cmdClass.getDeclaredMethod("executeImpl", Object.class);
 
 			setStart();
-			result = (Response) m.invoke(cmdObj, new Object());
+			result = (Response) m.invoke(cmdObj, IBANStore.getStore().getDriver());
 			setFinished();
 
 		} catch (ClassNotFoundException e) {
