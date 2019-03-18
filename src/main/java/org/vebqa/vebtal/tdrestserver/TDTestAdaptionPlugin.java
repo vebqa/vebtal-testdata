@@ -118,7 +118,7 @@ public class TDTestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 		String dataPath = GuiManager.getinstance().getConfig().getString("blzdata", "NOUSE");
 		if (!dataPath.contentEquals("NOUSE")) {
 			IBANStore.getStore().getDriver().setDataPath(GuiManager.getinstance().getConfig().getString("blzdata")).load();
-			GuiManager.getinstance().getLogArea().appendText("Added bank data: " + IBANStore.getStore().getDriver().getRecordCount() + "\n");
+			GuiManager.getinstance().writeLog("Added bank data: " + IBANStore.getStore().getDriver().getRecordCount());
 		}
 		
 		return pdfTab;
