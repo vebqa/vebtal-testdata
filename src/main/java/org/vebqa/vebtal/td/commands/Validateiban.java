@@ -45,7 +45,7 @@ public class Validateiban extends AbstractCommand {
 		}
 
 		tResp.setCode(Response.PASSED);
-		tResp.setMessage("");
+		tResp.setMessage("IBAN is valid");
 
 		return tResp;
 	}

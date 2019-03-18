@@ -50,7 +50,7 @@ public class Getbankfromiban extends AbstractCommand {
 		}
 
 		tResp.setCode(Response.PASSED);
-		tResp.setMessage("extracted BIC: " + iban.getBankCode());
+		tResp.setMessage(iban.getBankCode());
 		if (this.value != null && !this.value.contentEquals("")) {
 			tResp.setStoredKey(this.value);
 			tResp.setStoredValue(iban.getBankCode());
