@@ -1,1 +1,2 @@
-100000021Bank von Entenhausen                                      12345Entenhausen                        EBk Entenhausen            20100ENTBKAA110009011380U000000000
+360102001VON ESSEN Bank                                            45128Essen                              VON ESSEN Bank Essen       26035VONEDE33XXX09041505U000000000
+760300801BNP Paribas Niederlassung Deutschland                     90402Nürnberg                           BNPP ehem. Cortal Consors  26468CSDBDE71XXX01049354U000000000
