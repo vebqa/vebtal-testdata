@@ -65,5 +65,18 @@ public class CreateibanTest {
 
 		System.out.println("With Bank Code & Account Number: " + actualResult.getMessage());
 	}
+	
+	@Test
+	public void generateIBANWithCountryBankCodeAndAccountNumber() {
+		Createiban cmd = new Createiban("createIBAN", "country=DE;bank=36010200;account=1378304570;", "");
+
+		Response actualResult = cmd.executeImpl(driver);
+
+		assertEquals(actualResult.getCode(), Response.PASSED);
+		assertThat(actualResult.getMessage(),
+				CoreMatchers.allOf(containsString("3601 0200"), containsString("1378 3045 70"), containsString("DE")));
+
+		System.out.println("With Bank Code & Account Number: " + actualResult.getMessage());
+	}
 
 }

@@ -10,9 +10,11 @@ import org.vebqa.vebtal.td.IBANDriver;
 import org.vebqa.vebtal.tdrestserver.TDTestAdaptionPlugin;
 
 /*
- * Please Note: When Createiban() method is called without an account number(account=)
+ * Note: When Createiban() method is called without an account number(account=)
  * in target, a random account number is generated with buildRandom(), which might not
  * generate a valid account number for the given country with correct Check Digit.
+ * 
+ * Works only for Country DE
  */
 
 @Keyword(module = TDTestAdaptionPlugin.ID, command = "createIBAN", description = "create a valid IBAN number", hintTarget = "country=;bank=;account=;", hintValue = "<storeKey")

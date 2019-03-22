@@ -56,11 +56,12 @@ public class Getbicfromiban extends AbstractCommand {
 
 		if (iban.getCountryCode() != CountryCode.DE) {
 			tResp.setCode(Response.FAILED);
-			tResp.setMessage("Only german banks can resolved to BIC at this moment.");
+			tResp.setMessage("Only german banks can be resolved to BIC at this moment.");
 			return tResp;
 		}
 
 		String tBIC = ibanDriver.getBICbyBLZ(iban.getBankCode());
+
 		if (tBIC != null) {
 			tResp.setCode(Response.PASSED);
 			tResp.setMessage(tBIC);
@@ -74,6 +75,7 @@ public class Getbicfromiban extends AbstractCommand {
 		}
 
 		return tResp;
+
 	}
 
 }
