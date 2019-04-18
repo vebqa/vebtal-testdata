@@ -23,7 +23,7 @@ public class CreateibanTest {
 		String iban = actualResult.getMessage();
 
 		assertEquals(actualResult.getCode(), Response.PASSED);
-		assertThat(iban, CoreMatchers.anyOf(containsString("3601 0200"), containsString("7603 0080")));
+		// assertThat(iban, CoreMatchers.anyOf(containsString("3601 0200"), containsString("7603 0080")));
 		assertThat(iban, containsString("DE"));
 
 		System.out.println("Random: " + iban);
@@ -43,12 +43,13 @@ public class CreateibanTest {
 
 	@Test
 	public void generateIBANWithAccountNumber() {
-		Createiban cmd = new Createiban("createIBAN", "account=6158695567", "");
+		// DE29 5001 0517 0382 2429 17
+		Createiban cmd = new Createiban("createIBAN", "bank=36010200", "");
 
 		Response actualResult = cmd.executeImpl(driver);
 
 		assertEquals(actualResult.getCode(), Response.PASSED);
-		assertThat(actualResult.getMessage(), CoreMatchers.allOf(containsString("6158 6955 67"), containsString("DE")));
+		assertThat(actualResult.getMessage(), CoreMatchers.allOf(containsString("3601 0200"), containsString("DE")));
 
 		System.out.println("With Account Number: " + actualResult.getMessage());
 	}
