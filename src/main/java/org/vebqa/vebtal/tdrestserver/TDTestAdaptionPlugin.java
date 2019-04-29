@@ -106,6 +106,9 @@ public class TDTestAdaptionPlugin extends AbstractTestAdaptionPlugin {
 				GuiManager.getinstance().setTabStatus(TDTestAdaptionPlugin.ID, SutStatus.CONNECTED);
 				aResource.execute(newCmd);
 				GuiManager.getinstance().setTabStatus(TDTestAdaptionPlugin.ID, SutStatus.DISCONNECTED);
+				addCommand.setBackground(
+						new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+
 			}
 		});
 

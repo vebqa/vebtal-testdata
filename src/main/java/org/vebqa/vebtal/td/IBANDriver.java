@@ -23,11 +23,14 @@ public class IBANDriver extends ExternalResource {
 
 	private List<BankEntry> allDeBanks;
 
+	private List<BankEntry> allDeCreateAccountBanks;
+	
 	private static FixedFormatManager manager = new FixedFormatManagerImpl();
 
 	public IBANDriver() {
 		this.loadedblzdata = false;
 		this.allDeBanks = new ArrayList<>();
+		this.allDeCreateAccountBanks = new ArrayList<>();
 	}
 
 	public IBANDriver setDataPath(String aPath) {
@@ -37,7 +40,9 @@ public class IBANDriver extends ExternalResource {
 
 	public IBANDriver load() {
 		loadData();
-		this.loadedblzdata = true;
+		if (this.allDeBanks != null && this.allDeBanks.size() > 0) {
+			this.loadedblzdata = true;
+		}
 		return this;
 	}
 
@@ -53,8 +58,10 @@ public class IBANDriver extends ExternalResource {
 		try (BufferedReader br = new BufferedReader(new FileReader(data))) {
 			for (String line; (line = br.readLine()) != null;) {
 				BankEntry record = manager.load(BankEntry.class, line);
+				this.allDeBanks.add(record);
+				// load banks without special crc only: key => 09
 				if (record.getCrcmethod().contentEquals("09")) {
-					this.allDeBanks.add(record);
+					this.allDeCreateAccountBanks.add(record);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -80,5 +87,10 @@ public class IBANDriver extends ExternalResource {
 	public String getRandomBLZfromData() {
 		Random r = new Random();
 		return this.allDeBanks.get(r.nextInt(this.getRecordCount())).getBankleitzahl();
+	}
+	
+	public String getRandomBLZfromDataForAccountCreation() {
+		Random r = new Random();
+		return this.allDeCreateAccountBanks.get(r.nextInt(this.allDeCreateAccountBanks.size())).getBankleitzahl();
 	}
 }

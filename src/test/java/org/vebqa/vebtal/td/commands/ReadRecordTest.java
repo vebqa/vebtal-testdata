@@ -13,12 +13,12 @@ public class ReadRecordTest {
 
 	@Test
 	public void readDataAndCheckCount() {
-		assertEquals(1, driver.getRecordCount());
+		assertEquals(2, driver.getRecordCount());
 	}
 	
 	@Test
 	public void readDataAndSearchBICbyBLZ() {
-		assertEquals("ENTBKAA1100", driver.getBICbyBLZ("10000002"));
+		assertEquals("VONEDE33XXX", driver.getBICbyBLZ("36010200"));
 	}
 	
 }

@@ -62,9 +62,9 @@ public class Createiban extends AbstractCommand {
 		} else if (bank != "" && account == "") {
 			iban = new Iban.Builder().countryCode(country).bankCode(bank).buildRandom();
 		} else if (bank == "" && account != "") {
-			iban = new Iban.Builder().countryCode(country).bankCode(ibanDriver.getRandomBLZfromData()).accountNumber(account).build();
+			iban = new Iban.Builder().countryCode(country).bankCode(ibanDriver.getRandomBLZfromDataForAccountCreation()).accountNumber(account).build();
 		} else if (bank == "" && account == "") { //
-			iban = new Iban.Builder().countryCode(country).bankCode(ibanDriver.getRandomBLZfromData()).buildRandom();
+			iban = new Iban.Builder().countryCode(country).bankCode(ibanDriver.getRandomBLZfromDataForAccountCreation()).buildRandom();
 		}
 
 		tResp.setCode(Response.PASSED);
