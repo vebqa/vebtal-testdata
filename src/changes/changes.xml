@@ -6,7 +6,21 @@
 		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
 	</properties>
 	<body>
-		<release version="0.9.2" date="2018-04.30" description="">
+		<release version="1.0.1" date="2018-05.12" description="">
+			<action dev="kdoerges" type="update">
+				clean up
+			</action>
+			<action dev="radjindi" type="add">
+				new keyword: generateName for firstname and name, depending on gender and country
+			</action>
+		</release>
+		<release version="1.0.0" date="2018-05.08" description="">
+			<action dev="kdoerges" type="update">
+				create new iban only from banks without crc
+			</action>
+			<action dev="radjindi" type="add">
+				add junit tests
+			</action>
 			<action dev="kdoerges" type="update">
 				create new iban only from banks without crc
 			</action>
