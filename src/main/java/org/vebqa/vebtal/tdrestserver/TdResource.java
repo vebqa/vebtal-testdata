@@ -12,15 +12,16 @@ import org.vebqa.vebtal.model.Command;
 import org.vebqa.vebtal.model.CommandType;
 import org.vebqa.vebtal.model.Response;
 import org.vebqa.vebtal.td.IBANStore;
+import org.vebqa.vebtal.td.NamesStore;
 
 public class TdResource extends AbstractTestAdaptionResource implements TestAdaptionResource {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(TdResource.class);
-	
+
 	public TdResource() {
-	
+
 	}
-	
+
 	public Response execute(Command cmd) {
 
 		// disable user actions
@@ -43,7 +44,11 @@ public class TdResource extends AbstractTestAdaptionResource implements TestAdap
 			Method m = cmdClass.getDeclaredMethod("executeImpl", Object.class);
 
 			setStart();
-			result = (Response) m.invoke(cmdObj, IBANStore.getStore().getDriver());
+			if (getCommandClassName(cmd).contentEquals("Getname")) {
+				result = (Response) m.invoke(cmdObj, NamesStore.getStore().getDriver());
+			} else {
+				result = (Response) m.invoke(cmdObj, IBANStore.getStore().getDriver());
+			}
 			setFinished();
 
 		} catch (ClassNotFoundException e) {
@@ -77,6 +82,6 @@ public class TdResource extends AbstractTestAdaptionResource implements TestAdap
 		TDTestAdaptionPlugin.setDisableUserActions(false);
 
 		return result;
-	}	
+	}
 
 }
