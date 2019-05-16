@@ -7,10 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import org.junit.rules.ExternalResource;
-import org.vebqa.vebtal.td.model.BankEntry;
+import org.vebqa.vebtal.model.Country;
 import org.vebqa.vebtal.td.model.NameEntry;
 
 import com.ancientprogramming.fixedformat4j.format.FixedFormatManager;
@@ -29,6 +30,7 @@ public class NamesDriver extends ExternalResource {
 	public NamesDriver() {
 		this.loadedData = false;
 		this.allNames = new ArrayList<>();
+		this.dataPath = "resources/names-data.txt";
 	}
 
 	public NamesDriver setDataPath(String aPath) {
@@ -69,8 +71,32 @@ public class NamesDriver extends ExternalResource {
 		return this.allNames.size();
 	}
 
-	public String getRandomFirstname() {
+	public String getRandomFirstName(Country aCountry, String aGender) {
 		Random r = new Random();
-		return this.allNames.get(r.nextInt(this.getRecordCount())).getName();
+		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
+		
+		// Filter Objects 
+		for (NameEntry anEntry : this.allNames) {
+			if (anEntry.getCountry().contains(aCountry.name()) ) {
+				if (anEntry.getGender().contentEquals(aGender)) {
+					filteredNames.add(anEntry);
+				}
+			}
+		}
+		return filteredNames.get(r.nextInt(filteredNames.size())).getName();
 	}
+	
+	public String getRandomLastName(Country aCountry) {
+		Random r = new Random();
+		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
+		
+		// Filter Objects 
+		for (NameEntry anEntry : this.allNames) {
+			if (anEntry.getCountry().contains(aCountry.name()) ) {
+				filteredNames.add(anEntry);
+			}
+		}
+		return filteredNames.get(r.nextInt(filteredNames.size())).getName();
+	}
+	
 }

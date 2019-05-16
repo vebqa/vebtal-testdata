@@ -1,0 +1,5 @@
+Beeblebrox              l   en
+Ford                    f m en
+Prefect                 l   en
+Trillian                f f en
+Zaphod                  f m en
