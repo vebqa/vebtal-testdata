@@ -7,11 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 import org.junit.rules.ExternalResource;
-import org.vebqa.vebtal.model.Country;
 import org.vebqa.vebtal.td.model.NameEntry;
 
 import com.ancientprogramming.fixedformat4j.format.FixedFormatManager;
@@ -71,14 +69,14 @@ public class NamesDriver extends ExternalResource {
 		return this.allNames.size();
 	}
 
-	public String getRandomFirstName(Country aCountry, String aGender) {
+	public String getRandomFirstName(String aCountry, String aGender) {
 		Random r = new Random();
 		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
 		
 		// Filter Objects 
 		for (NameEntry anEntry : this.allNames) {
-			if (anEntry.getCountry().contains(aCountry.name()) ) {
-				if (anEntry.getGender().contentEquals(aGender)) {
+			if (anEntry.getCountry().contains(aCountry) || aCountry == "" ) {
+				if (anEntry.getGender().contentEquals(aGender) || aGender == "") {
 					filteredNames.add(anEntry);
 				}
 			}
@@ -86,13 +84,13 @@ public class NamesDriver extends ExternalResource {
 		return filteredNames.get(r.nextInt(filteredNames.size())).getName();
 	}
 	
-	public String getRandomLastName(Country aCountry) {
+	public String getRandomLastName(String aCountry) {
 		Random r = new Random();
 		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
 		
 		// Filter Objects 
 		for (NameEntry anEntry : this.allNames) {
-			if (anEntry.getCountry().contains(aCountry.name()) ) {
+			if (anEntry.getCountry().contentEquals(aCountry) || aCountry == "") {
 				filteredNames.add(anEntry);
 			}
 		}

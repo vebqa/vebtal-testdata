@@ -1,9 +1,9 @@
 package org.vebqa.vebtal.td.commands;
 
+import java.util.Locale;
 import org.vebqa.vebtal.annotations.Keyword;
 import org.vebqa.vebtal.command.AbstractCommand;
 import org.vebqa.vebtal.model.CommandType;
-import org.vebqa.vebtal.model.Country;
 import org.vebqa.vebtal.model.Response;
 import org.vebqa.vebtal.td.NamesDriver;
 import org.vebqa.vebtal.tdrestserver.TDTestAdaptionPlugin;
@@ -23,8 +23,8 @@ public class Getname extends AbstractCommand {
 	@Override
 	public Response executeImpl(Object driver) {
 
-		NamesDriver aDriver = (NamesDriver)driver; 
-		
+		NamesDriver aDriver = (NamesDriver) driver;
+
 		Response tResp = new Response();
 
 		String gender = "";
@@ -43,15 +43,24 @@ public class Getname extends AbstractCommand {
 				gender = subParts[1];
 				break;
 			case "country":
-				gender = subParts[1];
+				country = subParts[1];
 				break;
 			default:
 				break;
 			}
 		}
 
-		Country aCountry = Country.valueOf(country);
-		
+		String aCountry = "";
+		if (country != "") {
+			String[] locales = Locale.getISOCountries();
+
+			for (String countryCode : locales) {
+				if (country.equalsIgnoreCase(countryCode)) {
+					aCountry = countryCode;
+				}
+			}
+		}
+
 		String aGeneratedName = "";
 
 		if (name.contentEquals("f")) {
@@ -60,15 +69,14 @@ public class Getname extends AbstractCommand {
 		if (name.contentEquals("l")) {
 			aGeneratedName = aDriver.getRandomLastName(aCountry);
 		}
-		
+
 		tResp.setCode(Response.PASSED);
-		tResp.setMessage("");
+		tResp.setMessage(aGeneratedName);
 		if (this.value != null && !this.value.contentEquals("")) {
-			tResp.setStoredValue("");
+			tResp.setStoredValue(aGeneratedName);
 			tResp.setStoredKey(this.value);
 		}
 
 		return tResp;
 	}
-
 }

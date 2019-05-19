@@ -1,5 +1,6 @@
-Beeblebrox              l   en
-Ford                    f m en
-Prefect                 l   en
-Trillian                f f en
-Zaphod                  f m en
+Beeblebrox              l   EN
+Ford                    f m EN
+Müller                  l   DE
+Prefect                 l   EN
+Trillian                f f EN
+Zaphod                  f m EN

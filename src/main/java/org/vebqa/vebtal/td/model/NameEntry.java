@@ -40,7 +40,7 @@ public class NameEntry {
 		this.gender = aGender;
 	}
 	
-	@Field(offset=29, length=1)
+	@Field(offset=29, length=2)
 	public String getCountry() {
 		return this.country;
 	}
