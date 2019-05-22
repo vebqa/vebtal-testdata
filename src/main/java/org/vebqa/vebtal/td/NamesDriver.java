@@ -20,9 +20,9 @@ public class NamesDriver extends ExternalResource {
 	private boolean loadedData;
 
 	private String dataPath;
-	
+
 	private List<NameEntry> allNames;
-	
+
 	private static FixedFormatManager manager = new FixedFormatManagerImpl();
 
 	public NamesDriver() {
@@ -72,10 +72,10 @@ public class NamesDriver extends ExternalResource {
 	public String getRandomFirstName(String aCountry, String aGender) {
 		Random r = new Random();
 		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
-		
-		// Filter Objects 
+
+		// Filter Objects
 		for (NameEntry anEntry : this.allNames) {
-			if (anEntry.getCountry().contains(aCountry) || aCountry == "" ) {
+			if (anEntry.getCountry().contains(aCountry) || aCountry == "") {
 				if (anEntry.getGender().contentEquals(aGender) || aGender == "") {
 					filteredNames.add(anEntry);
 				}
@@ -83,18 +83,20 @@ public class NamesDriver extends ExternalResource {
 		}
 		return filteredNames.get(r.nextInt(filteredNames.size())).getName();
 	}
-	
+
 	public String getRandomLastName(String aCountry) {
 		Random r = new Random();
 		List<NameEntry> filteredNames = new ArrayList<NameEntry>();
-		
-		// Filter Objects 
+
+		// Filter Objects
 		for (NameEntry anEntry : this.allNames) {
-			if (anEntry.getCountry().contentEquals(aCountry) || aCountry == "") {
-				filteredNames.add(anEntry);
+			if (anEntry.getType().contentEquals("l")) {
+				if (anEntry.getCountry().contentEquals(aCountry) || aCountry == "") {
+					filteredNames.add(anEntry);
+				}
 			}
 		}
 		return filteredNames.get(r.nextInt(filteredNames.size())).getName();
 	}
-	
+
 }

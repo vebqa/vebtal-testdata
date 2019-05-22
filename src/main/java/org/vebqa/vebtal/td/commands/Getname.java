@@ -29,7 +29,7 @@ public class Getname extends AbstractCommand {
 
 		String gender = "";
 		String name = "";
-		String country = "";
+		String language = "";
 
 		// konvention: label=x
 		String[] parts = target.split(";");
@@ -42,21 +42,23 @@ public class Getname extends AbstractCommand {
 			case "gender":
 				gender = subParts[1];
 				break;
-			case "country":
-				country = subParts[1];
+			case "language":
+				language = subParts[1];
 				break;
 			default:
-				break;
+				tResp.setCode(Response.FAILED);
+				tResp.setMessage("Unknown attribute: " + subParts[0]);
+				return tResp;
 			}
 		}
 
-		String aCountry = "";
-		if (country != "") {
+		String aLanguage = "";
+		if (language != "") {
 			String[] locales = Locale.getISOCountries();
 
 			for (String countryCode : locales) {
-				if (country.equalsIgnoreCase(countryCode)) {
-					aCountry = countryCode;
+				if (language.equalsIgnoreCase(countryCode)) {
+					aLanguage = countryCode;
 				}
 			}
 		}
@@ -64,10 +66,10 @@ public class Getname extends AbstractCommand {
 		String aGeneratedName = "";
 
 		if (name.contentEquals("f")) {
-			aGeneratedName = aDriver.getRandomFirstName(aCountry, gender);
+			aGeneratedName = aDriver.getRandomFirstName(aLanguage, gender);
 		}
 		if (name.contentEquals("l")) {
-			aGeneratedName = aDriver.getRandomLastName(aCountry);
+			aGeneratedName = aDriver.getRandomLastName(aLanguage);
 		}
 
 		tResp.setCode(Response.PASSED);
