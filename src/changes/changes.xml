@@ -6,7 +6,10 @@
 		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
 	</properties>
 	<body>
-		<release version="1.0.1" date="" description="">
+		<release version="1.0.1" date="2019-07.14" description="">
+			<action dev="kdoerges" type="update">
+				update vebtal-parent
+			</action>
 			<action dev="kdoerges" type="update">
 				get names data onload, make it configurable
 			</action>
