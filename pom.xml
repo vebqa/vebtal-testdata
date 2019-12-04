@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.github.vebqa</groupId>
 		<artifactId>vebtal-parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3</version>
 	</parent>
 
 	<artifactId>vebtal-testdata</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>vebtal-testdata</name>
 	<description>create different kinds of testdata items</description>
 
@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>com.github.vebqa</groupId>
 			<artifactId>vebtal-api</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.iban4j</groupId>
